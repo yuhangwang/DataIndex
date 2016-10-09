@@ -1,7 +1,7 @@
 import Data.Index
 import System.Environment
 import System.Exit
-import System.IO 
+import Data.List
 
 main :: IO ()
 main = do
@@ -32,8 +32,14 @@ exe (output:input:time_unit:_) = do
 loadData :: String -> [[Float]]
 loadData content = fmap ((fmap read) . words) (lines content)
 
+array2str :: Show a => [[a]] -> String 
+array2str [] = ""
+array2str array = aux array []
+    where
+        aux :: Show a => [[a]] -> [String] -> String
+        aux [] accum = intercalate "\n" (reverse accum)
+        aux (x:xs) accum = aux xs ((unwords (map show x)):accum)
+
 save :: Show a => String -> [[a]] -> IO ()
 save output_file dat = do
-    out <- openFile output_file WriteMode
-    hPrint out dat
-    hClose out
+    writeFile output_file (array2str dat)
