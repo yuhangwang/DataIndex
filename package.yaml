@@ -15,7 +15,7 @@ description: DataIndex can add index column to data files
 executables:
   DataIndex:
     dependencies:
-    - base
+    - base >= 4 && < 5
     - DataIndex
     ghc-options:
     - -rtsopts
@@ -36,6 +36,7 @@ library:
   - base
   source-dirs: library
 license: MIT
+license-file: LICENSE.md
 maintainer: Yuhang(Steven) Wang
 name: DataIndex
 synopsis: A package for adding index column to data files
@@ -52,4 +53,4 @@ tests:
     - -with-rtsopts=-N
     main: Main.hs
     source-dirs: test-suite
-version: '0.1.0'
+version: '0.1.1'
