@@ -1,6 +1,8 @@
 import Data.Index
 import System.Environment
 import System.Exit
+import System.IO 
+
 main :: IO ()
 main = do
     args <- getArgs
@@ -22,15 +24,16 @@ exe [_,_] = do
     exitFailure
 
 exe (output:input:time_unit:_) = do
-    data <- loadData input
-    let unit = read input :: Float
-    save output (addTime data unit)
+    content <- readFile input
+    let dat = loadData content
+    let unit = read time_unit :: Float
+    save output (addTime dat unit)
 
-loadData :: Num a => FilePath -> IO [[Float]]
-loadData file_path = fmap ((fmap read) . words) (lines (readFile file_path))
+loadData :: String -> [[Float]]
+loadData content = fmap ((fmap read) . words) (lines content)
 
-save :: String -> [[a]] -> IO ()
-save output_file data = do
-    out = openFile output_file WriteMode
-    hPrint out data
+save :: Show a => String -> [[a]] -> IO ()
+save output_file dat = do
+    out <- openFile output_file WriteMode
+    hPrint out dat
     hClose out
