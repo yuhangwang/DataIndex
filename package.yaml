@@ -1,0 +1,55 @@
+benchmarks:
+  DataIndex-benchmarks:
+    dependencies:
+    - base
+    - DataIndex
+    - criterion
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
+    main: Main.hs
+    source-dirs: benchmark
+category: Data
+description: DataIndex can add index column to data files
+executables:
+  DataIndex:
+    dependencies:
+    - base
+    - DataIndex
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
+    main: Main.hs
+    source-dirs: executable
+extra-source-files:
+- CHANGELOG.md
+- LICENSE.md
+- package.yaml
+- README.md
+- stack.yaml
+ghc-options: -Wall
+github: yuhangwang/DataIndex
+library:
+  dependencies:
+  - base
+  source-dirs: library
+license: MIT
+maintainer: Yuhang(Steven) Wang
+name: DataIndex
+synopsis: A package for adding index column to data files
+tests:
+  DataIndex-test-suite:
+    dependencies:
+    - base
+    - DataIndex
+    - tasty
+    - tasty-hspec
+    ghc-options:
+    - -rtsopts
+    - -threaded
+    - -with-rtsopts=-N
+    main: Main.hs
+    source-dirs: test-suite
+version: '0.1.0'

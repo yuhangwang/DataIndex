@@ -1,3 +1,6 @@
+# package.yaml will generate new cabal file every time using `stack build`
+*.cabal
+sublime
 dist
 dist-*
 cabal-dev
